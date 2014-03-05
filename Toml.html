@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="TomlType.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="TomlType" rel="Chapter" href="TomlType.html">
+<link title="Toml" rel="Chapter" href="Toml.html"><link title="Parsing functions " rel="Section" href="#2_Parsingfunctions">
+<link title="Filter entries " rel="Section" href="#2_Filterentries">
+<link title="Extract a specific value " rel="Section" href="#2_Extractaspecificvalue">
+<link title="Primitive getters " rel="Subsection" href="#3_Primitivegetters">
+<link title="Table getter " rel="Subsection" href="#3_Tablegetter">
+<link title="Array getters" rel="Subsection" href="#3_Arraygetters">
+<title>Toml</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="TomlType.html" title="TomlType">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Toml.html">Toml</a></h1>
+
+<pre><span class="keyword">module</span> Toml: <code class="code">sig</code> <a href="Toml.html">..</a> <code class="code">end</code></pre><div class="info module top">
+The TOML parser interface<br>
+</div>
+<hr width="100%">
+<br>
+<h2 id="2_Parsingfunctions">Parsing functions </h2><br>
+
+<pre><span id="VALparse"><span class="keyword">val</span> parse</span> : <code class="type">Lexing.lexbuf -> <a href="TomlType.html#TYPEtomlTable">TomlType.tomlTable</a></code></pre>
+<pre><span id="VALfrom_string"><span class="keyword">val</span> from_string</span> : <code class="type">string -> <a href="TomlType.html#TYPEtomlTable">TomlType.tomlTable</a></code></pre>
+<pre><span id="VALfrom_channel"><span class="keyword">val</span> from_channel</span> : <code class="type">Pervasives.in_channel -> <a href="TomlType.html#TYPEtomlTable">TomlType.tomlTable</a></code></pre>
+<pre><span id="VALfrom_filename"><span class="keyword">val</span> from_filename</span> : <code class="type">string -> <a href="TomlType.html#TYPEtomlTable">TomlType.tomlTable</a></code></pre><br>
+<h2 id="2_Filterentries">Filter entries </h2>
+    Use this if you want to filter entries of a table.
+    You can retreive all values, direct values, or subtables. 
+    All functions return a (key, value) list<br>
+
+<pre><span id="VALtoml_to_list"><span class="keyword">val</span> toml_to_list</span> : <code class="type">('a, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> ('a * <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) list</code></pre><div class="info ">
+No filter<br>
+</div>
+
+<pre><span id="VALtables_to_list"><span class="keyword">val</span> tables_to_list</span> : <code class="type">('a, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> ('a * <a href="TomlType.html#TYPEtomlTable">TomlType.tomlTable</a>) list</code></pre><div class="info ">
+Filter tables tables (skip direct values)<br>
+</div>
+
+<pre><span id="VALvalues_to_list"><span class="keyword">val</span> values_to_list</span> : <code class="type">('a, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> ('a * <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) list</code></pre><div class="info ">
+Filter direct values (skip tables)<br>
+</div>
+<br>
+<h2 id="2_Extractaspecificvalue">Extract a specific value </h2>
+    These functions take the toml table as first argument and the key of 
+    value as second one. They have three behaviors:<ul>
+</ul>
+<ul>
+<li>The key is found and the type is good. The primitive value is returned</li>
+<li>The key is not found: raise Not_found</li>
+<li>The key is found but the type doesn't match: raise Bad_type</li>
+</ul>
+<br>
+
+<pre><span id="EXCEPTIONBad_type"><span class="keyword">exception</span> Bad_type</span> <span class="keyword">of</span> <code class="type">(string * string)</code></pre>
+<div class="info ">
+Bad_type expections carry (key, expected type) data<br>
+</div>
+<br>
+<h3 id="3_Primitivegetters">Primitive getters </h3>
+    Use these functions to get a single value of a known OCaml type<br>
+
+<pre><span id="VALget_bool"><span class="keyword">val</span> get_bool</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> bool</code></pre>
+<pre><span id="VALget_int"><span class="keyword">val</span> get_int</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> int</code></pre>
+<pre><span id="VALget_float"><span class="keyword">val</span> get_float</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> float</code></pre>
+<pre><span id="VALget_string"><span class="keyword">val</span> get_string</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> string</code></pre>
+<pre><span id="VALget_date"><span class="keyword">val</span> get_date</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> Unix.tm</code></pre><br>
+<h3 id="3_Tablegetter">Table getter </h3>
+    Get a subtable<br>
+
+<pre><span id="VALget_table"><span class="keyword">val</span> get_table</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> <a href="TomlType.html#TYPEtomlTable">TomlType.tomlTable</a></code></pre><br>
+<h3 id="3_Arraygetters">Array getters</h3>
+    Arrays contents are returned as lists<br>
+
+<pre><span id="VALget_bool_list"><span class="keyword">val</span> get_bool_list</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> bool list</code></pre>
+<pre><span id="VALget_int_list"><span class="keyword">val</span> get_int_list</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> int list</code></pre>
+<pre><span id="VALget_float_list"><span class="keyword">val</span> get_float_list</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> float list</code></pre>
+<pre><span id="VALget_string_list"><span class="keyword">val</span> get_string_list</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> string list</code></pre>
+<pre><span id="VALget_date_list"><span class="keyword">val</span> get_date_list</span> : <code class="type">(string, <a href="TomlType.html#TYPEtomlValue">TomlType.tomlValue</a>) Hashtbl.t -> string -> Unix.tm list</code></pre></body></html>
