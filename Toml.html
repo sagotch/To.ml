@@ -51,6 +51,10 @@ The TOML parser interface<br>
 <pre><span id="VALfrom_filename"><span class="keyword">val</span> from_filename</span> : <code class="type">string -> <a href="Toml.html#TYPEtable">table</a></code></pre><br>
 <h2 id="2_Generaltablemanipulations">General table manipulations </h2><br>
 
+<pre><span id="VALcreate"><span class="keyword">val</span> create</span> : <code class="type">unit -> <a href="Toml.html#TYPEtable">table</a></code></pre><div class="info ">
+Create a empty TOML table<br>
+</div>
+
 <pre><span id="VALmerge"><span class="keyword">val</span> merge</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> <a href="Toml.html#TYPEtable">table</a> -> unit</code></pre><div class="info ">
 Second table is merged into first one, if a key is present in two 
     tables, the second will override the first<br>
