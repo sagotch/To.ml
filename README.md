@@ -4,6 +4,8 @@
 
 Ocaml parser for TOML [(Tom's Obvious Minimal Language)](https://github.com/mojombo/toml) v0.2.0.
 
+This library can also serialize a TOML structure to string.
+
 ## Dependencies
 
 Toml need Ocaml 4.0 at least. Check your local installation with `ocamlc -v`.
