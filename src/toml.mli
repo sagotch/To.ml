@@ -62,3 +62,24 @@ val get_string_list :
   (string, TomlType.tomlValue) Hashtbl.t -> string -> string list
 val get_date_list :
   (string, TomlType.tomlValue) Hashtbl.t -> string -> Unix.tm list
+
+(** {3 Serialization}
+    Serialize a Toml structure *)
+
+(** Given a Toml table, returns a string containing the table serialized as a
+    valid Toml document. Keys and [TString] values should be in valid UTF-8.
+    [TDate] values should be in UTC.
+
+    @raise Bad_key if a key in the table (or in a nested table) contains
+    illegal characters. *)
+val string_of_table : TomlType.tomlTable -> string
+
+(** Exception thrown by {!val: string_of_table} when a key of a table
+    contains an illegal character. Illegal characters are:
+    - space
+    - #
+    - .
+    - \[
+    - \] *)
+exception Bad_key of string
+

@@ -1,5 +1,7 @@
 open TomlType
 
+include TomlWriter
+
 (** Parsing functions a TOML file
   @return (string, TomlValue) Hashtbl.t
 *)
