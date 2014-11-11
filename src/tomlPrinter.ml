@@ -1,5 +1,12 @@
 open TomlInternal.Type
 
+(* Compatibility with 4.01.0 *)
+let rec pp_print_list ?(pp_sep = Format.pp_print_cut) pp_v ppf = function
+  | [] -> ()
+  | v :: vs ->
+    pp_v ppf v; if vs <> [] then (pp_sep ppf ();
+                                  pp_print_list ~pp_sep pp_v ppf vs)
+
 module TomlMap = TomlInternal.Type.Map
 module TomlKey = TomlInternal.Type.Key
 
@@ -38,7 +45,7 @@ let rec print_array formatter toml_array =
     let pp_sep formatter () = Format.pp_print_string formatter ", "
     in
     Format.pp_print_char formatter '[';
-    Format.pp_print_list ~pp_sep print_item_func formatter values;
+    pp_print_list ~pp_sep print_item_func formatter values;
     Format.pp_print_char formatter ']'
   in
   match toml_array with
