@@ -14,6 +14,8 @@ end
 
 module Table : sig
 
+  module Key = TomlInternal.Type.Key
+
   (** Create a empty TOML table *)
   val empty : table
 

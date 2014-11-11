@@ -9,6 +9,8 @@ end
 
 module Table = struct
 
+  module Key = TomlInternal.Type.Key
+
   let empty = Map.empty
 
   let find = Map.find
