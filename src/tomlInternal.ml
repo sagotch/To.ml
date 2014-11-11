@@ -59,11 +59,11 @@ module Dump = struct
   open Type
 
   let list (stringifier : 'a -> string) (els : 'a list)  =
-    String.concat "; " @@ List.map stringifier els
+    String.concat "; " (List.map stringifier els)
 
   let rec table (tbl : table) : string =
-    Map.fold (fun k v acc -> (k, v) :: acc) tbl []
-    |> list (fun (k, v) -> (Type.Key.to_string k) ^ "->" ^ value v)
+    list (fun (k, v) -> (Type.Key.to_string k) ^ "->" ^ value v)
+      (Map.fold (fun k v acc -> (k, v) :: acc) tbl [])
 
   and array : array -> string = function
     | NodeEmpty -> ""
@@ -97,13 +97,13 @@ end
 module Equal = struct
 
   let rec value (x : Type.value) (y : Type.value) = match x, y with
-    | TArray x, TArray y -> array x y
-    | TTable x, TTable y -> table x y
-    | _, _               -> x = y
+    | Type.TArray x, Type.TArray y -> array x y
+    | Type.TTable x, Type.TTable y -> table x y
+    | _, _                         -> x = y
 
   and array (x : Type.array) (y : Type.array) = match x, y with
-    | NodeArray x, NodeArray y -> List.for_all2 array x y
-    | _, _                     -> x = y
+    | Type.NodeArray x, Type.NodeArray y -> List.for_all2 array x y
+    | _, _                               -> x = y
 
   and table (x : Type.table) (y : Type.table) =
     Type.Map.equal value x y

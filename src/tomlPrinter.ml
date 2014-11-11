@@ -92,7 +92,7 @@ and print_value_with_key formatter key toml_value sections =
        *)
       if not (TomlMap.for_all is_table value)
       then Format.fprintf formatter "[%s]\n"
-          (sections_with_key |> List.map TomlKey.to_string |> String.concat ".");
+          (String.concat "." (List.map TomlKey.to_string sections_with_key));
       (sections_with_key, false)
     | _             ->
       Format.fprintf formatter "%s = " (TomlKey.to_string key);

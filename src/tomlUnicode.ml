@@ -8,10 +8,10 @@
 (* This function convert Unicode escaped XXXX to utf-8 encoded string *)
 
 let to_utf8 u =
-  let dec = int_of_string @@ "0x" ^ u in
+  let dec = int_of_string ("0x" ^ u) in
   let update_byte s i mask shift =
     s.[i] <- Char.chr
-             @@ Char.code s.[i] + dec lsr shift land int_of_string mask in
+             (Char.code s.[i] + dec lsr shift land int_of_string mask) in
   if dec > 0xFFFF then
     failwith ("Invalid escaped unicode \\u" ^ u)
   else if dec > 0x7FF then
@@ -22,7 +22,7 @@ let to_utf8 u =
       update_byte s 0 "0b00001111" 12;
       s
     end
-  else if dec > 0x7F then 
+  else if dec > 0x7F then
     begin
       let s = String.copy "\192\128" in
       update_byte s 1 "0b00111111" 0;

@@ -1,5 +1,10 @@
 {
  open TomlParser
+
+(* 3.12.1 compatibility *)
+let unescaped s =
+  Scanf.sscanf ("\"" ^ s ^ "\"") "%S%!" (fun x -> x)
+
 }
 
 let t_white   = ['\t' ' ']
@@ -57,7 +62,7 @@ rule tomlex = parse
 
 and stringify buff = parse
   | t_escape as value
-    { Buffer.add_string buff (Scanf.unescaped value); stringify buff lexbuf }
+    { Buffer.add_string buff (unescaped value); stringify buff lexbuf }
   | "\\u" (t_unicode as u)
     { Buffer.add_string buff (TomlUnicode.to_utf8 u); stringify buff lexbuf }
   | '\\' { failwith "Forbidden escaped char" }
