@@ -4,149 +4,45 @@
 <link rel="stylesheet" href="style.css" type="text/css">
 <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
 <link rel="Start" href="index.html">
+<link rel="previous" href="TomlInternal.html">
 <link rel="Up" href="index.html">
 <link title="Index of types" rel=Appendix href="index_types.html">
 <link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
-<link title="Toml" rel="Chapter" href="Toml.html"><link title="Parsing functions " rel="Section" href="#2_Parsingfunctions">
-<link title="General table manipulations " rel="Section" href="#2_Generaltablemanipulations">
-<link title="Extract a specific value " rel="Section" href="#2_Extractaspecificvalue">
-<link title="Adding a value to a TOML table " rel="Section" href="#2_AddingavaluetoaTOMLtable">
-<link title="Primitive getters " rel="Subsection" href="#3_Primitivegetters">
-<link title="Table getter " rel="Subsection" href="#3_Tablegetter">
-<link title="Array getters" rel="Subsection" href="#3_Arraygetters">
-<link title="Prepare ocaml primitive values " rel="Subsection" href="#3_Prepareocamlprimitivevalues">
-<link title="Prepare lists for insertion as an array " rel="Subsection" href="#3_Preparelistsforinsertionasanarray">
-<link title="Insert prepared value " rel="Subsection" href="#3_Insertpreparedvalue">
+<link title="TomlInternal" rel="Chapter" href="TomlInternal.html">
+<link title="Toml" rel="Chapter" href="Toml.html"><link title="Parser" rel="Section" href="#2_Parser">
+<link title="Data types" rel="Section" href="#2_Datatypes">
+<link title="Printing" rel="Section" href="#2_Printing">
 <title>Toml</title>
 </head>
 <body>
-<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+<div class="navbar"><a class="pre" href="TomlInternal.html" title="TomlInternal">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
 &nbsp;</div>
 <h1>Module <a href="type_Toml.html">Toml</a></h1>
 
 <pre><span class="keyword">module</span> Toml: <code class="code">sig</code> <a href="Toml.html">..</a> <code class="code">end</code></pre><div class="info module top">
-The TOML parser interface<br>
+The TOML module interface<br>
 </div>
 <hr width="100%">
-
-<pre><span id="TYPEtable"><span class="keyword">type</span> <code class="type"></code>table</span> = <code class="type">TomlType.tomlTable</code> </pre>
-<div class="info ">
-<code class="code">t</code> is **NOT** a persistent data structure<br>
-</div>
-
-
-<pre><span id="TYPEvalue"><span class="keyword">type</span> <code class="type"></code>value</span> = <code class="type">TomlType.tomlValue</code> </pre>
-
-
-<pre><span id="TYPEarray"><span class="keyword">type</span> <code class="type"></code>array</span> = <code class="type">TomlType.tomlNodeArray</code> </pre>
-
 <br>
-<h2 id="2_Parsingfunctions">Parsing functions </h2><br>
-
-<pre><span id="VALparse"><span class="keyword">val</span> parse</span> : <code class="type">Lexing.lexbuf -> <a href="Toml.html#TYPEtable">table</a></code></pre>
-<pre><span id="VALfrom_string"><span class="keyword">val</span> from_string</span> : <code class="type">string -> <a href="Toml.html#TYPEtable">table</a></code></pre>
-<pre><span id="VALfrom_channel"><span class="keyword">val</span> from_channel</span> : <code class="type">Pervasives.in_channel -> <a href="Toml.html#TYPEtable">table</a></code></pre>
-<pre><span id="VALfrom_filename"><span class="keyword">val</span> from_filename</span> : <code class="type">string -> <a href="Toml.html#TYPEtable">table</a></code></pre><br>
-<h2 id="2_Generaltablemanipulations">General table manipulations </h2><br>
-
-<pre><span id="VALcreate"><span class="keyword">val</span> create</span> : <code class="type">unit -> <a href="Toml.html#TYPEtable">table</a></code></pre><div class="info ">
-Create a empty TOML table<br>
-</div>
-
-<pre><span id="VALmerge"><span class="keyword">val</span> merge</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> <a href="Toml.html#TYPEtable">table</a> -> unit</code></pre><div class="info ">
-Second table is merged into first one, if a key is present in two 
-    tables, the second will override the first<br>
-</div>
-
-<pre><span id="VALrec_merge"><span class="keyword">val</span> rec_merge</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> <a href="Toml.html#TYPEtable">table</a> -> unit</code></pre><div class="info ">
-Same as merge function, except that everything that can be merged will 
-    be merged instead of erasing the first one (sub tables and arrays)<br>
-</div>
+<h2 id="2_Parser">Parser</h2><br>
 <br>
-<h2 id="2_Extractaspecificvalue">Extract a specific value </h2>
-    These functions take the toml table as first argument and the key of 
-    value as second one. They have three behaviors:<ul>
-</ul>
-<ul>
-<li>The key is found and the type is good. The primitive value is returned</li>
-<li>The key is not found: raise Not_found</li>
-<li>The key is found but the type doesn't match: raise Bad_type</li>
-</ul>
-<br>
+Simple parsing functions.<br>
 
-<pre><span id="EXCEPTIONBad_type"><span class="keyword">exception</span> Bad_type</span> <span class="keyword">of</span> <code class="type">(string * string)</code></pre>
-<div class="info ">
-Bad_type expections carry (key, expected type) data<br>
-</div>
+<pre><span class="keyword">module</span> <a href="Toml.Parser.html">Parser</a>: <code class="code">sig</code> <a href="Toml.Parser.html">..</a> <code class="code">end</code></pre><br>
+<h2 id="2_Datatypes">Data types</h2><br>
 <br>
-<h3 id="3_Primitivegetters">Primitive getters </h3>
-    Use these functions to get a single value of a known OCaml type<br>
+Data types returned by the parser, can be used to build a Toml structure
+ from scratch.
+<p>
 
-<pre><span id="VALget_bool"><span class="keyword">val</span> get_bool</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> bool</code></pre>
-<pre><span id="VALget_int"><span class="keyword">val</span> get_int</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> int</code></pre>
-<pre><span id="VALget_float"><span class="keyword">val</span> get_float</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> float</code></pre>
-<pre><span id="VALget_string"><span class="keyword">val</span> get_string</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> string</code></pre>
-<pre><span id="VALget_date"><span class="keyword">val</span> get_date</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> Unix.tm</code></pre><br>
-<h3 id="3_Tablegetter">Table getter </h3>
-    Get a subtable<br>
+ You should use the <a href="Toml.Value.To.html"><code class="code">Toml.Value.To</code></a> and <a href="Toml.Value.Of.html"><code class="code">Toml.Value.Of</code></a> modules to navigate between
+ plain OCaml data structures and Toml data structures.<br>
 
-<pre><span id="VALget_table"><span class="keyword">val</span> get_table</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> <a href="Toml.html#TYPEtable">table</a></code></pre><br>
-<h3 id="3_Arraygetters">Array getters</h3>
-    Arrays contents are returned as lists<br>
+<pre><span class="keyword">module</span> <a href="Toml.Table.html">Table</a>: <code class="code">sig</code> <a href="Toml.Table.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Toml.Value.html">Value</a>: <code class="code">sig</code> <a href="Toml.Value.html">..</a> <code class="code">end</code></pre><br>
+<h2 id="2_Printing">Printing</h2><br>
 
-<pre><span id="VALget_bool_list"><span class="keyword">val</span> get_bool_list</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> bool list</code></pre>
-<pre><span id="VALget_int_list"><span class="keyword">val</span> get_int_list</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> int list</code></pre>
-<pre><span id="VALget_float_list"><span class="keyword">val</span> get_float_list</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> float list</code></pre>
-<pre><span id="VALget_string_list"><span class="keyword">val</span> get_string_list</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> string list</code></pre>
-<pre><span id="VALget_date_list"><span class="keyword">val</span> get_date_list</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> Unix.tm list</code></pre><br>
-<h2 id="2_AddingavaluetoaTOMLtable">Adding a value to a TOML table </h2><br>
-<br>
-In order to add a value into a table, you must follow these steps:
-    <OL>
-</OL>
-<ul>
-<li>prepare the value for insertion, using <code class="code">mk_x</code> functions</li>
-<li>add your preparation using <code class="code">add_value</code> function</li>
-</ul>
-<br>
-<br>
-<h3 id="3_Prepareocamlprimitivevalues">Prepare ocaml primitive values </h3><br>
-<br>
-Use these functions to prepare ocaml primitive values for insertion in
-    a toml table<br>
-
-<pre><span id="VALmk_bool"><span class="keyword">val</span> mk_bool</span> : <code class="type">bool -> <a href="Toml.html#TYPEvalue">value</a></code></pre>
-<pre><span id="VALmk_int"><span class="keyword">val</span> mk_int</span> : <code class="type">int -> <a href="Toml.html#TYPEvalue">value</a></code></pre>
-<pre><span id="VALmk_float"><span class="keyword">val</span> mk_float</span> : <code class="type">float -> <a href="Toml.html#TYPEvalue">value</a></code></pre>
-<pre><span id="VALmk_string"><span class="keyword">val</span> mk_string</span> : <code class="type">string -> <a href="Toml.html#TYPEvalue">value</a></code></pre>
-<pre><span id="VALmk_date"><span class="keyword">val</span> mk_date</span> : <code class="type">Unix.tm -> <a href="Toml.html#TYPEvalue">value</a></code></pre>
-<pre><span id="VALmk_table"><span class="keyword">val</span> mk_table</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> <a href="Toml.html#TYPEvalue">value</a></code></pre><br>
-<h3 id="3_Preparelistsforinsertionasanarray">Prepare lists for insertion as an array </h3><br>
-<br>
-Functions for making a toml array from a ocaml primitive type list.
-    Resulting arrays can not be directly inserted into a toml table but need 
-    to be transformed by the <code class="code">mk_array</code> function<br>
-
-<pre><span id="VALmk_bool_array"><span class="keyword">val</span> mk_bool_array</span> : <code class="type">bool list -> <a href="Toml.html#TYPEarray">array</a></code></pre>
-<pre><span id="VALmk_int_array"><span class="keyword">val</span> mk_int_array</span> : <code class="type">int list -> <a href="Toml.html#TYPEarray">array</a></code></pre>
-<pre><span id="VALmk_float_array"><span class="keyword">val</span> mk_float_array</span> : <code class="type">float list -> <a href="Toml.html#TYPEarray">array</a></code></pre>
-<pre><span id="VALmk_string_array"><span class="keyword">val</span> mk_string_array</span> : <code class="type">string list -> <a href="Toml.html#TYPEarray">array</a></code></pre>
-<pre><span id="VALmk_date_array"><span class="keyword">val</span> mk_date_array</span> : <code class="type">Unix.tm list -> <a href="Toml.html#TYPEarray">array</a></code></pre>
-<pre><span id="VALmk_array_array"><span class="keyword">val</span> mk_array_array</span> : <code class="type"><a href="Toml.html#TYPEarray">array</a> list -> <a href="Toml.html#TYPEarray">array</a></code></pre><div class="info ">
-Combine a list of toml array into a array of array<br>
-</div>
-
-<pre><span id="VALmk_array"><span class="keyword">val</span> mk_array</span> : <code class="type"><a href="Toml.html#TYPEarray">array</a> -> <a href="Toml.html#TYPEvalue">value</a></code></pre><div class="info ">
-Use this function to make a toml value from toml array made with 
-    <code class="code">mk_x_array</code> functions. Result will be able to be include into a TOML 
-    table using <code class="code">add_value</code>.<br>
-</div>
-<br>
-<h3 id="3_Insertpreparedvalue">Insert prepared value </h3><br>
-
-<pre><span id="VALadd_value"><span class="keyword">val</span> add_value</span> : <code class="type"><a href="Toml.html#TYPEtable">table</a> -> string -> <a href="Toml.html#TYPEvalue">value</a> -> unit</code></pre><div class="info ">
-Add a tomlValue to a tomlTable<br>
-</div>
-</body></html>
+<pre><span class="keyword">module</span> <a href="Toml.Printer.html">Printer</a>: <code class="code">sig</code> <a href="Toml.Printer.html">..</a> <code class="code">end</code></pre></body></html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="TomlInternal.Dump.html">
+<link rel="Up" href="TomlInternal.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="TomlInternal" rel="Chapter" href="TomlInternal.html">
+<link title="Toml" rel="Chapter" href="Toml.html"><link title="Toml tables" rel="Section" href="#2_Tomltables">
+<link title="Toml values" rel="Section" href="#2_Tomlvalues">
+<title>TomlInternal.Type</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="TomlInternal.html" title="TomlInternal">Up</a>
+&nbsp;<a class="post" href="TomlInternal.Dump.html" title="TomlInternal.Dump">Next</a>
+</div>
+<h1>Module <a href="type_TomlInternal.Type.html">TomlInternal.Type</a></h1>
+
+<pre><span class="keyword">module</span> Type: <code class="code">sig</code> <a href="TomlInternal.Type.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<br>
+<h2 id="2_Tomltables">Toml tables</h2><br>
+
+<pre><span class="keyword">module</span> <a href="TomlInternal.Type.Key.html">Key</a>: <code class="code">sig</code> <a href="TomlInternal.Type.Key.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="TomlInternal.Type.Map.html">Map</a>: <code class="type">Map.Make</code><code class="code">(</code><code class="type"><a href="TomlInternal.Type.Key.html">Key</a></code><code class="code">)</code></pre><br>
+<h2 id="2_Tomlvalues">Toml values</h2><br>
+
+<pre><code><span id="TYPEarray"><span class="keyword">type</span> <code class="type"></code>array</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray.NodeEmpty"><span class="constructor">NodeEmpty</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray.NodeBool"><span class="constructor">NodeBool</span></span> <span class="keyword">of</span> <code class="type">bool list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray.NodeInt"><span class="constructor">NodeInt</span></span> <span class="keyword">of</span> <code class="type">int list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray.NodeFloat"><span class="constructor">NodeFloat</span></span> <span class="keyword">of</span> <code class="type">float list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray.NodeString"><span class="constructor">NodeString</span></span> <span class="keyword">of</span> <code class="type">string list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray.NodeDate"><span class="constructor">NodeDate</span></span> <span class="keyword">of</span> <code class="type">Unix.tm list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray.NodeArray"><span class="constructor">NodeArray</span></span> <span class="keyword">of</span> <code class="type"><a href="TomlInternal.Type.html#TYPEarray">array</a> list</code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEvalue"><span class="keyword">type</span> <code class="type"></code>value</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue.TBool"><span class="constructor">TBool</span></span> <span class="keyword">of</span> <code class="type">bool</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue.TInt"><span class="constructor">TInt</span></span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue.TFloat"><span class="constructor">TFloat</span></span> <span class="keyword">of</span> <code class="type">float</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue.TString"><span class="constructor">TString</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue.TDate"><span class="constructor">TDate</span></span> <span class="keyword">of</span> <code class="type">Unix.tm</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue.TArray"><span class="constructor">TArray</span></span> <span class="keyword">of</span> <code class="type"><a href="TomlInternal.Type.html#TYPEarray">array</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvalue.TTable"><span class="constructor">TTable</span></span> <span class="keyword">of</span> <code class="type"><a href="TomlInternal.Type.html#TYPEtable">table</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEtable"><span class="keyword">type</span> <code class="type"></code>table</span> = <code class="type"><a href="TomlInternal.Type.html#TYPEvalue">value</a> Map.t</code> </pre>
+
+</body></html>

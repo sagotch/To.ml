@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="Toml.Table.html">
+<link rel="Up" href="Toml.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="TomlInternal" rel="Chapter" href="TomlInternal.html">
+<link title="Toml" rel="Chapter" href="Toml.html"><title>Toml.Parser</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="Toml.html" title="Toml">Up</a>
+&nbsp;<a class="post" href="Toml.Table.html" title="Toml.Table">Next</a>
+</div>
+<h1>Module <a href="type_Toml.Parser.html">Toml.Parser</a></h1>
+
+<pre><span class="keyword">module</span> Parser: <code class="code">sig</code> <a href="Toml.Parser.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<br>
+Parses raw data into Toml data structures<br>
+
+<pre><span id="VALparse"><span class="keyword">val</span> parse</span> : <code class="type">Lexing.lexbuf -> <a href="TomlInternal.Type.html#TYPEtable">TomlInternal.Type.table</a></code></pre><div class="info ">
+Given a lexer buffer, returns a Toml table.<br>
+<b>Raises</b> <code>TomlParser.Error</code> if the buffer is not valid Toml.<br>
+</div>
+
+<pre><span id="VALfrom_string"><span class="keyword">val</span> from_string</span> : <code class="type">string -> <a href="TomlInternal.Type.html#TYPEtable">TomlInternal.Type.table</a></code></pre><div class="info ">
+Given an UTF-8 string, returns a Toml table.<br>
+<b>Raises</b> <code>TomlParser.Error</code> if the string is not valid Toml.<br>
+</div>
+
+<pre><span id="VALfrom_channel"><span class="keyword">val</span> from_channel</span> : <code class="type">Pervasives.in_channel -> <a href="TomlInternal.Type.html#TYPEtable">TomlInternal.Type.table</a></code></pre><div class="info ">
+Given an input channel, returns a Toml table.<br>
+<b>Raises</b> <code>TomlParser.Error</code> if the data in the channel is not valid Toml.<br>
+</div>
+
+<pre><span id="VALfrom_filename"><span class="keyword">val</span> from_filename</span> : <code class="type">string -> <a href="TomlInternal.Type.html#TYPEtable">TomlInternal.Type.table</a></code></pre><div class="info ">
+Given a filename, returns a Toml table.<br>
+<b>Raises</b><ul><li><code>TomlParser.Error</code> if the data in the file is not valid Toml.</li>
+<li><code>Pervasives.Sys_error</code> if the file could not be opened.</li>
+</ul>
+</div>
+</body></html>
