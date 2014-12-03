@@ -16,9 +16,15 @@
 <h1>Index of values</h1>
 <table>
 <tr><td align="left"><br>A</td></tr>
+<tr><td><a href="Toml.Compare.html#VALarray">array</a> [<a href="Toml.Compare.html">Toml.Compare</a>]</td>
+<td><div class="info">
+Given two Toml arrays, return <code class="code">-1</code>, <code class="code">0</code> or <code class="code">1</code> depending on whether the
+   first is smaller, equal or greater than the second
+</div>
+</td></tr>
 <tr><td><a href="Toml.Printer.html#VALarray">array</a> [<a href="Toml.Printer.html">Toml.Printer</a>]</td>
 <td><div class="info">
-Given an Toml array and a formatter, inserts a valid Toml representation of
+Given a Toml array and a formatter, inserts a valid Toml representation of
    this value in the formatter.
 </div>
 </td></tr>
@@ -30,7 +36,7 @@ Given an Toml array and a formatter, inserts a valid Toml representation of
 <td></td></tr>
 <tr><td><a href="Toml.Value.To.html#VALarray">array</a> [<a href="Toml.Value.To.html">Toml.Value.To</a>]</td>
 <td></td></tr>
-<tr><td><a href="TomlInternal.Equal.html#VALarray">array</a> [<a href="TomlInternal.Equal.html">TomlInternal.Equal</a>]</td>
+<tr><td><a href="TomlInternal.Compare.html#VALarray">array</a> [<a href="TomlInternal.Compare.html">TomlInternal.Compare</a>]</td>
 <td></td></tr>
 <tr><td><a href="TomlInternal.Dump.html#VALarray">array</a> [<a href="TomlInternal.Dump.html">TomlInternal.Dump</a>]</td>
 <td></td></tr>
@@ -97,6 +103,12 @@ Given an UTF-8 string, returns a Toml table.
 <td></td></tr>
 <tr><td><a href="Toml.Value.To.html#VALint">int</a> [<a href="Toml.Value.To.html">Toml.Value.To</a>]</td>
 <td></td></tr>
+<tr><td align="left"><br>K</td></tr>
+<tr><td><a href="Toml.html#VALkey">key</a> [<a href="Toml.html">Toml</a>]</td>
+<td><div class="info">
+Turns a string into a table key.
+</div>
+</td></tr>
 <tr><td align="left"><br>L</td></tr>
 <tr><td><a href="TomlInternal.Dump.html#VALlist">list</a> [<a href="TomlInternal.Dump.html">TomlInternal.Dump</a>]</td>
 <td></td></tr>
@@ -109,7 +121,7 @@ Builds a key from a plain string.
 <tr><td align="left"><br>P</td></tr>
 <tr><td><a href="Toml.Parser.html#VALparse">parse</a> [<a href="Toml.Parser.html">Toml.Parser</a>]</td>
 <td><div class="info">
-Given a lexer buffer, returns a Toml table.
+Given a lexer buffer and a source (eg, a filename), returns a Toml table.
 </div>
 </td></tr>
 <tr><td align="left"><br>S</td></tr>
@@ -122,9 +134,15 @@ Given a lexer buffer, returns a Toml table.
 <tr><td><a href="Toml.Value.To.html#VALstring">string</a> [<a href="Toml.Value.To.html">Toml.Value.To</a>]</td>
 <td></td></tr>
 <tr><td align="left"><br>T</td></tr>
+<tr><td><a href="Toml.Compare.html#VALtable">table</a> [<a href="Toml.Compare.html">Toml.Compare</a>]</td>
+<td><div class="info">
+Given two Toml tables, return <code class="code">-1</code>, <code class="code">0</code> or <code class="code">1</code> depending on whether the
+   first is smaller, equal or greater than the second
+</div>
+</td></tr>
 <tr><td><a href="Toml.Printer.html#VALtable">table</a> [<a href="Toml.Printer.html">Toml.Printer</a>]</td>
 <td><div class="info">
-Given an Toml table and a formatter, inserts a valid Toml representation of
+Given a Toml table and a formatter, inserts a valid Toml representation of
    this value in the formatter.
 </div>
 </td></tr>
@@ -132,7 +150,7 @@ Given an Toml table and a formatter, inserts a valid Toml representation of
 <td></td></tr>
 <tr><td><a href="Toml.Value.To.html#VALtable">table</a> [<a href="Toml.Value.To.html">Toml.Value.To</a>]</td>
 <td></td></tr>
-<tr><td><a href="TomlInternal.Equal.html#VALtable">table</a> [<a href="TomlInternal.Equal.html">TomlInternal.Equal</a>]</td>
+<tr><td><a href="TomlInternal.Compare.html#VALtable">table</a> [<a href="TomlInternal.Compare.html">TomlInternal.Compare</a>]</td>
 <td></td></tr>
 <tr><td><a href="TomlInternal.Dump.html#VALtable">table</a> [<a href="TomlInternal.Dump.html">TomlInternal.Dump</a>]</td>
 <td></td></tr>
@@ -142,13 +160,19 @@ Returns the key as a plain string.
 </div>
 </td></tr>
 <tr><td align="left"><br>V</td></tr>
+<tr><td><a href="Toml.Compare.html#VALvalue">value</a> [<a href="Toml.Compare.html">Toml.Compare</a>]</td>
+<td><div class="info">
+Given two Toml values, return <code class="code">-1</code>, <code class="code">0</code> or <code class="code">1</code> depending on whether the
+   first is smaller, equal or greater than the second
+</div>
+</td></tr>
 <tr><td><a href="Toml.Printer.html#VALvalue">value</a> [<a href="Toml.Printer.html">Toml.Printer</a>]</td>
 <td><div class="info">
-Given an Toml value and a formatter, inserts a valid Toml representation of
+Given a Toml value and a formatter, inserts a valid Toml representation of
    this value in the formatter.
 </div>
 </td></tr>
-<tr><td><a href="TomlInternal.Equal.html#VALvalue">value</a> [<a href="TomlInternal.Equal.html">TomlInternal.Equal</a>]</td>
+<tr><td><a href="TomlInternal.Compare.html#VALvalue">value</a> [<a href="TomlInternal.Compare.html">TomlInternal.Compare</a>]</td>
 <td></td></tr>
 <tr><td><a href="TomlInternal.Dump.html#VALvalue">value</a> [<a href="TomlInternal.Dump.html">TomlInternal.Dump</a>]</td>
 <td></td></tr>

@@ -11,9 +11,10 @@
 <link title="Index of values" rel=Appendix href="index_values.html">
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="TomlInternal" rel="Chapter" href="TomlInternal.html">
-<link title="Toml" rel="Chapter" href="Toml.html"><link title="Parser" rel="Section" href="#2_Parser">
-<link title="Data types" rel="Section" href="#2_Datatypes">
+<link title="Toml" rel="Chapter" href="Toml.html"><link title="Data types" rel="Section" href="#2_Datatypes">
+<link title="Parser" rel="Section" href="#2_Parser">
 <link title="Printing" rel="Section" href="#2_Printing">
+<link title="Comparison" rel="Section" href="#2_Comparison">
 <title>Toml</title>
 </head>
 <body>
@@ -27,11 +28,6 @@ The TOML module interface<br>
 </div>
 <hr width="100%">
 <br>
-<h2 id="2_Parser">Parser</h2><br>
-<br>
-Simple parsing functions.<br>
-
-<pre><span class="keyword">module</span> <a href="Toml.Parser.html">Parser</a>: <code class="code">sig</code> <a href="Toml.Parser.html">..</a> <code class="code">end</code></pre><br>
 <h2 id="2_Datatypes">Data types</h2><br>
 <br>
 Data types returned by the parser, can be used to build a Toml structure
@@ -42,7 +38,20 @@ Data types returned by the parser, can be used to build a Toml structure
  plain OCaml data structures and Toml data structures.<br>
 
 <pre><span class="keyword">module</span> <a href="Toml.Table.html">Table</a>: <code class="code">sig</code> <a href="Toml.Table.html">..</a> <code class="code">end</code></pre>
+<pre><span id="VALkey"><span class="keyword">val</span> key</span> : <code class="type">string -> Table.Key.t</code></pre><div class="info ">
+Turns a string into a table key.<br>
+<b>Raises</b> <code>Toml.Table.Key.Bad_key</code> if the key contains invalid characters.<br>
+</div>
+
 <pre><span class="keyword">module</span> <a href="Toml.Value.html">Value</a>: <code class="code">sig</code> <a href="Toml.Value.html">..</a> <code class="code">end</code></pre><br>
+<h2 id="2_Parser">Parser</h2><br>
+<br>
+Simple parsing functions.<br>
+
+<pre><span class="keyword">module</span> <a href="Toml.Parser.html">Parser</a>: <code class="code">sig</code> <a href="Toml.Parser.html">..</a> <code class="code">end</code></pre><br>
 <h2 id="2_Printing">Printing</h2><br>
 
-<pre><span class="keyword">module</span> <a href="Toml.Printer.html">Printer</a>: <code class="code">sig</code> <a href="Toml.Printer.html">..</a> <code class="code">end</code></pre></body></html>
+<pre><span class="keyword">module</span> <a href="Toml.Printer.html">Printer</a>: <code class="code">sig</code> <a href="Toml.Printer.html">..</a> <code class="code">end</code></pre><br>
+<h2 id="2_Comparison">Comparison</h2><br>
+
+<pre><span class="keyword">module</span> <a href="Toml.Compare.html">Compare</a>: <code class="code">sig</code> <a href="Toml.Compare.html">..</a> <code class="code">end</code></pre></body></html>
